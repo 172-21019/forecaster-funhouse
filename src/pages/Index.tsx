@@ -54,7 +54,14 @@ const Index = () => {
         transition={{ duration: 0.5 }}
         className="container mx-auto max-w-4xl"
       >
-        <h1 className="text-4xl font-bold text-center mb-8">Weather Forecast</h1>
+        <div className="flex items-center justify-center gap-3 mb-8">
+          <img 
+            src="/lovable-uploads/cdc72bb2-21fc-4b60-b8f4-f2984a0909d6.png" 
+            alt="Weather Icon" 
+            className="w-10 h-10"
+          />
+          <h1 className="text-4xl font-bold text-center">Weather Forecast</h1>
+        </div>
         
         <SearchLocation onSearch={fetchWeatherData} />
 

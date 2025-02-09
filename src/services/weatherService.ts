@@ -3,7 +3,7 @@ import axios from "axios";
 
 const BASE_URL = "https://api.openweathermap.org/data/2.5";
 
-let API_KEY = "";
+let API_KEY = "9e030b6c2cd5cf23a221640cbabfc1d4";
 
 export const setApiKey = (key: string) => {
   API_KEY = key;
@@ -24,10 +24,6 @@ export interface WeatherData {
 }
 
 export const getWeatherByCity = async (city: string): Promise<WeatherData> => {
-  if (!API_KEY) {
-    throw new Error("API key not set");
-  }
-
   try {
     const response = await axios.get(
       `${BASE_URL}/weather?q=${city}&units=metric&appid=${API_KEY}`
@@ -49,10 +45,6 @@ export const getWeatherByCity = async (city: string): Promise<WeatherData> => {
 };
 
 export const getForecast = async (city: string) => {
-  if (!API_KEY) {
-    throw new Error("API key not set");
-  }
-
   try {
     const response = await axios.get(
       `${BASE_URL}/forecast?q=${city}&units=metric&appid=${API_KEY}`

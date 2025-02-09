@@ -3,8 +3,7 @@ import { useState, useEffect } from "react";
 import WeatherCard from "@/components/WeatherCard";
 import SearchLocation from "@/components/SearchLocation";
 import WeatherMetrics from "@/components/WeatherMetrics";
-import ApiKeyForm from "@/components/ApiKeyForm";
-import { getWeatherByCity, getForecast, setApiKey, WeatherData } from "@/services/weatherService";
+import { getWeatherByCity, getForecast, WeatherData } from "@/services/weatherService";
 import { motion } from "framer-motion";
 import { toast } from "@/hooks/use-toast";
 import { Card } from "@/components/ui/card";
@@ -12,7 +11,6 @@ import { Card } from "@/components/ui/card";
 const Index = () => {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [hasApiKey, setHasApiKey] = useState(false);
 
   const fetchWeatherData = async (city: string) => {
     try {
@@ -35,16 +33,10 @@ const Index = () => {
     }
   };
 
-  const handleApiKeySubmit = (apiKey: string) => {
-    setApiKey(apiKey);
-    setHasApiKey(true);
-    // Fetch weather for default city
+  useEffect(() => {
+    // Fetch weather for default city on component mount
     fetchWeatherData("London");
-  };
-
-  if (!hasApiKey) {
-    return <ApiKeyForm onSubmit={handleApiKeySubmit} />;
-  }
+  }, []);
 
   if (loading) {
     return (

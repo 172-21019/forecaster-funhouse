@@ -64,9 +64,13 @@ const SearchLocation = ({ onSearch }: SearchLocationProps) => {
             placeholder="Search location..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="backdrop-blur-lg bg-white/30 border-none focus:ring-2 focus:ring-blue-400"
+            className="backdrop-blur-lg bg-white/30 border-white/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-400 transition-all duration-300 placeholder:text-gray-500"
           />
-          <Button type="submit" variant="outline" className="backdrop-blur-lg bg-white/30">
+          <Button 
+            type="submit" 
+            variant="outline" 
+            className="backdrop-blur-lg bg-white/30 hover:bg-white/40 border border-white/50 transition-all duration-300"
+          >
             <Search className="w-4 h-4" />
           </Button>
         </form>
@@ -77,7 +81,7 @@ const SearchLocation = ({ onSearch }: SearchLocationProps) => {
             animate={{ opacity: 1, y: 0 }}
             className="absolute w-full mt-2 z-50"
           >
-            <Card className="p-2 backdrop-blur-lg bg-white/90">
+            <Card className="p-2 backdrop-blur-lg bg-white/90 border border-white/50 shadow-lg">
               {suggestions.map((city, index) => (
                 <motion.button
                   key={city}
@@ -86,6 +90,7 @@ const SearchLocation = ({ onSearch }: SearchLocationProps) => {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: index * 0.1 }}
+                  whileHover={{ scale: 1.02 }}
                 >
                   {city}
                 </motion.button>
